@@ -23,6 +23,11 @@ const isDry = process.argv[5] || false; // Dont transform (just for testing)
 
 const transformFile = (fileName) => {
   try {
+    // Ignore some Files
+    if(fileName.indexOf("game/game.js") > 0) return;
+
+    // if(fileName.indexOf("CampaignCashbackAnimationTemplate/index.js") < 0) return;
+    
     console.log('Transforming:', fileName);
     const inputCode = fs.readFileSync(fileName, 'utf8');
     const ast = parser.parse(inputCode, {

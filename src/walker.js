@@ -10,7 +10,9 @@ const checkIfFileShouldBeIgnored = (fullPath) => {
   const hasJsExtension = fullPath.trim().match(/\.[jt]sx?$/);
   const isTestFile = fullPath.trim().match(/(test.[jt]sx?|spec.[jt]sx?)/);
 
-  return !(hasJsExtension && !isTestFile);
+  const isMinJsFile = fullPath.trim().match(/min.[jt]sx?/);
+
+  return !(hasJsExtension && !isTestFile && !isMinJsFile);
 };
 
 const walk = (rootDir, allFiles = []) => {
