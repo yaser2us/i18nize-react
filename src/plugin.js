@@ -13,6 +13,7 @@ const {
 const {
   isBlacklistedForJsxAttribute,
   handleConditionalExpressions,
+  isStyleSheetCreate,
 } = require('./plugin-helpers');
 
 const handleStringLiteral = (path, table, key) => {
@@ -125,9 +126,12 @@ module.exports = ({ types: t }) => ({
       enter(path) {
         const key = _.get(path, 'node.key.name');
         if (!key) return;
+        
+        //check for Stylesheet
+        
 
         // Check for blacklist
-        if (isBlacklistedForJsxAttribute(path)) return;
+        if (isBlacklistedForJsxAttribute(path) || isStyleSheetCreate(path)) return;
 
         extractValueAndUpdateTable(t, this.state, path.get('value'), key);
       },

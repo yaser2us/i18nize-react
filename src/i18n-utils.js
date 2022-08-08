@@ -12,7 +12,7 @@ const {
 // TODO: Generate these files with babel too
 const generateI18nFiles = (outputDir, sourceDir) => {
   mkdirp.sync(path.join(outputDir, sourceDir, 'i18n'));
-  fs.writeFileSync(path.join(outputDir, sourceDir, 'i18n', 'keys.js'), `module.exports = ${JSON.stringify(LutManager.getKeys(), null, 2)}`);
+  fs.writeFileSync(path.join(outputDir, sourceDir, 'i18n', 'keys.js'), `module.exports = ${JSON.stringify(LutManager.getKeys(), null, 4)}`);
   const initJsPath = path.resolve(path.join(__dirname, '../i18n-static/init.js'));
   fs.writeFileSync(path.join(outputDir, sourceDir, 'i18n', 'init.js'), fs.readFileSync(initJsPath));
 
